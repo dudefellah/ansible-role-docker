@@ -1,0 +1,27 @@
+---
+- name: Install the config destination path if needed
+  file:
+    path: "{{ docker_daemon_json_filename | dirname }}"
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+
+- name: Install Docker daemon.json
+  template:
+    src: daemon.json.j2
+    dest: "{{ docker_daemon_json_filename }}"
+    mode: "0644"
+    owner: root
+    group: root
+  notify: restart docker
+  when:
+    - "docker_daemon_json|length > 0"
+
+- name: Clean out Docker daemon.json
+  file:
+    path: "{{ docker_daemon_json_filename }}"
+    state: absent
+  when:
+    - "docker_daemon_json|length == 0"
+    - "docker_daemon_json_filename|length > 0"
