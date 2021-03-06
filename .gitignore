@@ -1,3 +1,6 @@
 *.sw[po]
-__pycache__
+*.retry
+*/__pycache__
+*.pyc
+.cache
 tags
