@@ -1,8 +1,20 @@
 # Ansible Role: Docker
 
-[![CI](https://github.com/geerlingguy/ansible-role-docker/workflows/CI/badge.svg?event=push)](https://github.com/geerlingguy/ansible-role-docker/actions?query=workflow%3ACI)
+[![pipeline status](https://gitlab.com/dudefellah/ansible-role-docker/badges/master/pipeline.svg)](https://gitlab.com/dudefellah/ansible-role-docker/-/commits/master)
 
 An Ansible Role that installs [Docker](https://www.docker.com) on Linux.
+
+## Note
+
+This is a fork of the
+[geerlingguy.docker](https://github.com/geerlingguy/ansible-role-docker)
+Docker role with a few modifications. If you're looking for that role (which may
+be better maintained than this one), please see his role rather than this one.
+
+Otherwise, this role adds the ability to easily customize your `docker.json`
+file in your Docker configuration. This is useful in a number of scenarios,
+including the configuration of Kubernetes nodes. See
+[defaults/main.yml](defaults/main.yml) for more details.
 
 ## Requirements
 
@@ -39,17 +51,17 @@ Docker Compose installation options.
     docker_apt_ignore_key_error: True
     docker_apt_gpg_key: https://download.docker.com/linux/{{ ansible_distribution | lower }}/gpg
 
-(Used only for Debian/Ubuntu.) You can switch the channel to `nightly` if you want to use the Nightly release.
+(Used only for Debian/Ubuntu.) You can switch the channel to `edge` if you want to use the Edge release.
 
 You can change `docker_apt_gpg_key` to a different url if you are behind a firewall or provide a trustworthy mirror.
 Usually in combination with changing `docker_apt_repository` as well.
 
     docker_yum_repo_url: https://download.docker.com/linux/centos/docker-{{ docker_edition }}.repo
-    docker_yum_repo_enable_nightly: '0'
+    docker_yum_repo_enable_edge: '0'
     docker_yum_repo_enable_test: '0'
     docker_yum_gpg_key: https://download.docker.com/linux/centos/gpg
 
-(Used only for RedHat/CentOS.) You can enable the Nightly or Test repo by setting the respective vars to `1`.
+(Used only for RedHat/CentOS.) You can enable the Edge or Test repo by setting the respective vars to `1`.
 
 You can change `docker_yum_gpg_key` to a different url if you are behind a firewall or provide a trustworthy mirror.
 Usually in combination with changing `docker_yum_repository` as well.
