@@ -1,0 +1,19 @@
+---
+- name: Install Docker daemon.json
+  copy:
+    src: daemon.json.j2
+    dest: "{{ docker_daemon_json_filename }}"
+    mode: "0644"
+    owner: root
+    group: root
+  notify: restart docker
+  when:
+    - "docker_daemon_json|bool"
+
+- name: Clean out Docker daemon.json
+  file:
+    path: "{{ docker_daemon_json_filename }}"
+    state: absent
+  when:
+    - "not docker_daemon_json|bool"
+    - "docker_daemon_json_filename|length > 0"
