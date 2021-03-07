@@ -1,7 +1,6 @@
 ---
 - name: Converge
   hosts: all
-  become: true
 
   pre_tasks:
     - name: Update apt cache.
@@ -20,7 +19,7 @@
       changed_when: false
       failed_when: systemctl_status.rc > 1
   roles:
-    - role: dudefellah.docker
+    - role: ansible-role-docker
       vars:
         docker_daemon_json:
           log-driver: json-file
