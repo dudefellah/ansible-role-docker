@@ -19,5 +19,6 @@
       changed_when: false
       failed_when: systemctl_status.rc > 1
 
-  roles:
-    - role: ansible-role-docker
+  tasks:
+    - include_role:
+        name: ansible-role-docker
