@@ -5,11 +5,11 @@ stages:
 
 include:
   - remote: "https://gitlab.com/dudefellah/ci-templates/-/raw/master/ansible/Molecule.Docker.gitlab-ci.yml"
-  - remote: "https://gitlab.com/dudefellah/ci-templates/-/raw/master/ansible/Galaxy.gitlab-ci.yml"
+#  - remote: "https://gitlab.com/dudefellah/ci-templates/-/raw/master/ansible/Galaxy.gitlab-ci.yml"
 
 molecule:
   stage: test
-  extends: .ansible_molecule_docker
+  image: dudefellah/ansible-molecule:3.2.3
   tags:
     - docker-socket-runner
 
