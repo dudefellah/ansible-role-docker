@@ -9,6 +9,8 @@ include:
 molecule:
   stage: test
   image: dudefellah/ansible-molecule:3.2.3
+  script:
+    - molecule test --all
   tags:
     - docker-socket-runner
 
